@@ -1,0 +1,218 @@
+(*) package 的示範
+package packageName <-- 透過 packageName 來描述路徑的訊息。
+import packageName  <-- 引用 packageName 目錄下的類別與資料。
+
+
+(*) AndroidManifest.xml
+   ...
+   <activity
+	 android:name=".MainActivity"
+	 android:exported="true">
+	 <intent-filter>
+		<action android:name="android.intent.action.MAIN" />
+
+		<category android:name="android.intent.category.LAUNCHER" />
+	 </intent-filter>
+   </activity>
+   ...
+
+(*) MainActivity.java
+public class MainActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+	
+        super.onCreate(savedInstanceState);  // keep this line
+		
+//        EdgeToEdge.enable(this);
+
+        setContentView(R.layout.activity_main);  // keep this line
+		
+//        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+//            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+//            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+//            return insets;
+//        });
+
+    }
+}
+
+
+(*)縮小自己，融入團體
+   0dp weight
+
+(*)犧牲小我，完成大我
+   application stack
+
+(*) gravity vs layout_gravity
+
+(*) 這個當事者: this，此刻觸發事件時，當下被觸發的物件。
+this@MainActivity, this
+
+
+(*) layout的設定
+必須宣告其大小，即寬與高的值。
+wrap_content
+match_parent
+
+ConstructraintLayout: 
+其上的component當沒有設定對齊或束縛時，會往上往左靠！
+
+
+(*)
+元件尺寸的單位，請使用 dp => 120dp。
+字型大小的單位，請使用 sp =>  25sp。
+dp: density pixel  <-- for component size
+sp: scalable pixel <-- for font size
+https://developer.android.com/training/multiscreen/screendensities?hl=zh-tw
+
+0dp for applyingweight value
+
+ex.
+	android:layout_width="200dp"
+	android:layout_height="200dp"
+	android:background="#0FF"  <-- #AABBCC => #ABC 紅綠藍的各個分量，皆是兩位相同的16進位值時，可以只寫一個。
+	android:fontFamily="sans-serif"
+	android:gravity="left|bottom"
+	android:text="Hello World!"
+	android:textSize="20sp"
+	android:texColor="#FF0000"
+	
+	for button: 
+	android:textAllCaps="false"  <-- default, but different from privious Android version
+
+(*) constraintlayout: 五花大綁。(複製原來的layout檔案內容)
+原則上，在平面只要綁定兩個方向，即可完成固定！
+同向互拉: 置中效果，可用在與畫面或物件上 => 左右與上下。
+件置畫面時可以先將物件拖離開一點齊，再進行綁定。
+
+
+(*) R: Android 的資源管理物件
+宣告:
+"@+id/id_name": 有加號，請求為我們加入。
+
+引用:
+1) XML: "@id/id_name" => 要使用的元件id名稱。
+2) code: R.id.id_name
+
+
+1) local variable: 
+   var button: Button  <-- it should be assignd a value now.
+2) global variable:
+   lateinit var button: Button  <-- lateinit: to assign its value later.
+   
+android:textAllCaps
+
+(*) Toast
+Toast:
+Toast.makeText(context, message, Toast.LENGTH_SHORT/Toast.LENGTH_LONG).show()
+
+ex. 
+Toast.makeText(this@MainActivity, "請輸入月份！", Toast.LENGTH_LONG).show()
+
+this@MainActivity  <-- for Activity
+
+
+(*) 物件的好處: 可以完成具體的任務(方法)，同時提供可以修改的可能性(屬性)。
+事件驅動的模式:
+為 Button 建立回應函式: (詳細的介紹下次再說！)
+Button.setOnClickListener { ... }
+
+
+(*) toString(): Android 中很多屬性或結果，可以使用 toString()，來確實轉換成字串的形式。
+
+
+(*) 下載 ShareX (portable 版本)，製作動態的 GIF 檔，來錄製APP的操作過程。
+
+(*) ConstraintLayout
+    match_constraint (可以設定長或寬大小，符合限制的範圍)
+    guideline
+
+(*) Layout: 
+    LinearLayout(horizontal/vertical)
+	RelativeLayout
+	FrameLayout
+	
+	使用 constraintLayout 的介紹:(read by your self)
+	https://developer.android.com/develop/ui/views/layout/declaring-layout?hl=zh-tw
+	
+	
+(*) 圖片檔可以放入 drawable 目錄，但檔名必須都是小寫，開頭不可以是數字，只能是小寫英文與底線。
+    符合上述規則的圖檔，才能正確地通過編譯。
+	例如，加入 Garfield.png 後，編譯時出現的訊息:
+	'G' is not a valid file-based resource name character: File-based resource names must contain only lowercase a-z, 0-9, or underscore
+
+		
+
+(*) 中英文版的切換
+在values.xml中定義畫面上要引用的內容。
+為不同的語言建立一份架構相同，但採用不同的語言。
+
+	
+(*) chainable
+	Snackbar.make(button, "Form Snack bar", Snackbar.LENGTH_LONG)
+		.setAction("OK") {  // 設定按鈕上的字: "OK"。
+			// tv.text = "From SnackBar!"
+			// do something here!
+		}
+		.show()	
+
+(*) 
+修改 build.gradle.kts(Module :app)
+...
+android {
+    namespace = "ntut.rich54007.template"
+    compileSdk = 35  <-- 保持較新！可能需要安裝更新版本的sdk！
+
+    defaultConfig {
+        applicationId = "ntut.rich54007.template"
+        minSdk = 24
+        targetSdk = 34  <-- 足夠就好！
+        versionCode = 1
+        versionName = "1.0"
+
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+    }
+...
+
+
+Troubleshooting
+(*)當 emulator 出狀況時的重啟
+工作管理員 >> 處理程序 (名稱排序 >> 刪除 qemu-system....)
+
+(*) 另一種方式，從執行的舊有專案著手，透過複製該專案資料夾，並更改成希望的新類別名稱。
+再於Android Studio中進行與類別相關的細部修改，藉以建立出一個獨立於原來專案的新專案。
+這個方法通常僅能修改原類別的名稱部分，更高一層的目錄則無法變更。
+1) app >> kotlin+java >> ntut.s54007.original_class_name (refactor >> rename)
+       >> ntut.s54007.new_class_name
+   同時請 Android Studio 幫我們做相關的修改。
+
+
+2) Gradle Scripts >> build.gradle.kts (Module :app)
+   將原有舊類別的名稱，修改成新類別的名稱。
+
+3) app >> res >> values >> strings.xml: app_name
+
+
+
+(*) 即使是建立一個預設的新專案，仍然因為版本的問題而出現無法編譯的問題。
+因為專案
+
+C:\Users\richwang\AppData\Local\Android\Sdk\platforms
+
+修改 build.gradle.kts(Module :app)
+...
+android {
+    namespace = "ntut.rich54007.template"
+    compileSdk = 35  <-- 保持較新！可能需要安裝更新版本的sdk！
+
+    defaultConfig {
+        applicationId = "ntut.rich54007.template"
+        minSdk = 24
+        targetSdk = 34  <-- 足夠就好！
+        versionCode = 1
+        versionName = "1.0"
+
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+    }
+...

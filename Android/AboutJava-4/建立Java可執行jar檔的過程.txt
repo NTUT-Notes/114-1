@@ -1,0 +1,123 @@
+(*)通常情況下，執行 Java 程式檔的步驟
+程式檔: xyz.java
+1) javac xyz.java  => 生成 xyz.class
+2) java xyz  <-- 給定 main class 的名字 xyz 即可，不需要附加 .class => xyz.class。
+
+(*)新進的 Java IDE 會將 Java 檔案以 UTF-8 格式儲存。
+   在 console mode 下編譯，如果有出現編碼問題時，可以將檔案再轉換成 UTF-8 格式，再試試。
+
+(*)示範如何將 Java 檔案包裝成可執行的 jar 檔
+
+這裡介紹如何將 Java 程式彙整成 jar 檔(例如，命名為 xyz.jar)，方便像呼叫一般程式那樣，
+直接透過 java -jar xyz.jar 來執行 xyz.jar。
+
+接下來的說明，是假設系統已加入 Java 的 bin 路徑，
+也就是說，可以在 console mode 下，使用 java or java -version，來觀察回應。
+
+
+//------------------------------------------------------------------------
+1)首先進入 console mode: Windows + R >> cmd
+	
+2)確認是否已完成 Java 編譯路徑的指定:
+  輸入執行 java -version，應該要顯示目前安裝的版本。
+  (如果沒有正確顯示，就需要先完成這部分，再接續後面的執行。
+   在進入 console mode 後，找到有包含 jar.exe, java.exe, javac.exe 所在的目錄。
+   下指令: path=上面找到的目錄，按下 Enter 來進行路徑的設定。
+   這時應該就可以在當下的目錄中，可以使用 java, javac, jar 等程式了。
+   如果想同時保留原來的路徑設定: path=%path%;想要增加的目錄名稱。
+
+   此外，新近的 java.exe，可以用來直接執行單一內容檔 .java 檔案，不用再編譯成 byte-code。
+   例如， java xyz.java。
+  )
+
+3)切換到程式所在的目錄，例如，C:\JavaParameters，
+  參考下列的操作，來完成包裝 jar 的過程。
+  
+4)示範組裝成可執行jar檔的操作過程:
+(示範過程中的兩個檔案內容，請參考文章最下方的部分，也請正確地將其分別存至 JavaParameters 目錄。)
+
+C:\Users\user_name>cd C:\JavaParameters
+
+C:\JavaParameters>dir
+ 磁碟區 D 中的磁碟是 DATA
+ 磁碟區序號:  DAE5-6446
+
+ C:\JavaParameters 的目錄
+
+2025/09/28  下午 05:45    <DIR>          .
+2025/09/28  下午 05:16                18 manifest.txt
+2025/09/28  下午 05:00               381 Test.java
+               2 個檔案             399 位元組
+               1 個目錄  256,071,798,784 位元組可用
+
+C:\JavaParameters>javac Test.java
+
+C:\JavaParameters>dir
+ 磁碟區 D 中的磁碟是 DATA
+ 磁碟區序號:  DAE5-6446
+
+ C:\JavaParameters 的目錄
+
+2025/09/28  下午 05:48    <DIR>          .
+2025/09/28  下午 05:16                18 manifest.txt
+2025/09/28  下午 05:48               757 Test.class
+2025/09/28  下午 05:00               381 Test.java
+               3 個檔案           1,156 位元組
+               1 個目錄  256,071,790,592 位元組可用
+
+C:\JavaParameters>jar cfm mytest.jar manifest.txt Test.class  <-- 使用 jar，並注意是 cfm 的順序。
+
+C:\JavaParameters>dir
+ 磁碟區 D 中的磁碟是 DATA
+ 磁碟區序號:  DAE5-6446
+
+ C:\JavaParameters 的目錄
+
+2025/09/28  下午 05:50    <DIR>          .
+2025/09/28  下午 05:16                18 manifest.txt
+2025/09/28  下午 05:50               955 mytest.jar
+2025/09/28  下午 05:48               757 Test.class
+2025/09/28  下午 05:00               381 Test.java
+               4 個檔案           2,111 位元組
+               1 個目錄  256,071,786,496 位元組可用
+
+C:\JavaParameters>java -jar mytest.jar  <-- 使用 java -jar
+Hello world form Java!
+
+No parameter(s) assigned.
+
+C:\JavaParameters>java -jar mytest.jar 1 2 3
+Hello world form Java!
+
+0: 1
+1: 2
+2: 3
+
+C:\JavaParameters>
+
+(*)manifest.txt 的檔名可以任取，重要的是: 內容中對類別的標註必須是對的。
+   同樣地，生成的 jar 檔名也可以任取。
+
+//---------------------------------------------------------
+底下是需要的兩個檔案: Test.java, manifest.txt。
+其中的
+(*)Test.java
+class Test {
+    public static void main(String[] args) {
+        System.out.println("Hello world form Java!\n");
+
+        if (args.length < 1) {
+            System.out.println("No parameter(s) assigned.");
+            System.exit(0);
+        }
+
+        for (int i = 0; i < args.length; ++i) {
+            System.out.printf("%d: %s\n", i, args[i]);
+        }
+    }
+}
+//---------------------------------------------------------
+(*)manifest.txt (注意，最後必須在Test後面加上換行符號！檔名用其他名稱亦可。)
+Main-Class: Test
+           
+//---------------------------------------------------------

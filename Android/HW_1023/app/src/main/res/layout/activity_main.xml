@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="北科資工飲料店"
+        android:textColor="#F200FF"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <RadioGroup
+        android:id="@+id/drink_type"
+        android:layout_width="145dp"
+        android:layout_height="150dp"
+        app:layout_constraintEnd_toStartOf="@+id/temp_type"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/temp_type">
+
+        <RadioButton
+            android:id="@+id/americano"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="美式咖啡"
+            android:textSize="25sp" />
+
+        <RadioButton
+            android:id="@+id/latte"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="莊園拿鐵"
+            android:textSize="25sp" />
+
+        <RadioButton
+            android:id="@+id/papaya_milk"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="木瓜牛奶"
+            android:textSize="25sp" />
+    </RadioGroup>
+
+    <RadioGroup
+        android:id="@+id/temp_type"
+        android:layout_width="89dp"
+        android:layout_height="193dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2">
+
+        <RadioButton
+            android:id="@+id/hot"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="熱"
+            android:textSize="22sp" />
+
+        <RadioButton
+            android:id="@+id/ice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="冰"
+            android:textSize="22sp" />
+
+        <RadioButton
+            android:id="@+id/less_ice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="少冰"
+            android:textSize="22sp" />
+
+        <RadioButton
+            android:id="@+id/no_ice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="去冰"
+            android:textSize="22sp" />
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="杯數："
+        android:textColor="#3F51B5"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.25"
+        app:layout_constraintStart_toEndOf="@+id/temp_type"
+        app:layout_constraintTop_toTopOf="@+id/temp_type" />
+
+    <EditText
+        android:id="@+id/amount"
+        android:layout_width="73dp"
+        android:layout_height="54dp"
+        android:layout_marginTop="15dp"
+        android:ems="10"
+        android:inputType="text"
+        android:textSize="25sp"
+        app:layout_constraintStart_toStartOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <Button
+        android:id="@+id/submit"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="15dp"
+        android:text="加入訂單"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/temp_type" />
+
+    <TextView
+        android:id="@+id/output_view"
+        android:layout_width="216dp"
+        android:layout_height="374dp"
+        android:layout_marginTop="20dp"
+        android:text="訂購飲料："
+        android:textColor="#3F51B5"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/submit" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

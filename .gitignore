@@ -1,2 +1,16 @@
 *.autosave.xopp
+
+# .pdf files of textbook
 Computer Organizations/*.pdf
+Computer Organizations/*/*.pdf
+Computer Network/*.pdf
+Computer Network/*/*.pdf
+/Data Structure/*.pdf
+/Data Structure/*/*.pdf
+
+# The course that doesn't have note
+/Web Development
+/Object-Oriented Programming
+Android/Prove.txt
+/Object-Oriented Programming
+/Object-Oriented Programming

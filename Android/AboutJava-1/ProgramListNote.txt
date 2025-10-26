@@ -1,0 +1,20 @@
+OOP (object-oriented programming) 物件導向程式設計
+object: 物件或個體。
+
+First.java
+Second.jave
+Third.java
+
+JavaBasicOperation.java
+StringOperation.java
+JavaRandom.java
+JavaOverloading.java
+JavaArray.java
+RandomNumber.java
+
+
+APP programming:
+design + coding
+1 XML + Java  <-->  Java
+2 XML + Kotlin  <-->  ava
+3 Jetpack compose  <-->  Kotlin
