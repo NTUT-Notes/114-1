@@ -18,7 +18,7 @@ class XoppUtils:
     self.path = path
     pass
 
-  def _findBestAbsolute(self, file: Path) -> Path:
+  def _findBestAbsolute(self, file: Path) -> Path | None:
     targetParent = str(file.parent).split("/")
 
     def _compareLastNIsSame(a: list, b: list, n: int) -> bool:
@@ -44,7 +44,7 @@ class XoppUtils:
         reverse=True
     )
                         
-    return possibility[0]
+    return possibility[0] if possibility else None
   
   def fixBackground(self):
     with gzip.open(self.path.absolute(), 'rt', encoding='utf-8') as fin:
@@ -64,6 +64,7 @@ class XoppUtils:
     
     if not newPath:
       return
+    
     print(f"RESULT IS: {newPath.absolute()}")
     
     content = re.sub(r'filename="(.+?)/([^/]+\.pdf)"', f'filename="{newPath.absolute()}"', content)
