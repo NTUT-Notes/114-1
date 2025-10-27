@@ -34,10 +34,19 @@ jobs:
           git config --global user.name "XOPP Builder"
           git config --global user.email "actions@github.com"
 
-      - name: Install Dependencies
-        run: |
-          sudo apt update
-          sudo apt install xournalpp
+      - name: Cache apt packages
+        id: cache-apt
+        uses: actions/cache@v4
+        with:
+          path: |
+            /var/cache/apt/archives
+            /var/lib/apt/lists
+          key: ${{ runner.os }}-apt-xournalpp-v1 # 使用一個簡單的 key
+          restore-keys: |
+            ${{ runner.os }}-apt-xournalpp-
+
+      - name: Install dependencies
+        run: sudo apt-get update && sudo apt-get install -y xournalpp
       
       - name: Convert to PDF
         run: ./.deploy/convert.sh
