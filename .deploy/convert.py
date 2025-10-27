@@ -90,22 +90,22 @@ class XoppUtils:
     return result
 
 def main() -> None:
-    files = XoppUtils.fetchXoppFiles()
+  files = XoppUtils.fetchXoppFiles()
 
-    count = len(files)
-    print(f"Found {count} valid files in this directory.")
+  count = len(files)
+  print(f"Found {count} valid files in this directory.")
 
-    for index, item in enumerate(files, 1):
-      print(f"[{index}/{count}]", end=f" Processing \"{item.path.name}\" ")
+  for index, item in enumerate(files, 1):
+    print(f"[{index}/{count}]", end=f" Processing \"{item.path.name}\" ")
 
-      print(f"fix pdf...", end=" ")
-      item.fixBackground()
-      print("Done.")
+    print(f"fix pdf...", end=" ")
+    item.fixBackground()
+    print("Done.")
 
-      try:
-          item.convertToPdf()
-      except subprocess.CalledProcessError as e:
-          print(f"Error converting {item.path.name} \n{e.stderr}")
+    try:
+        item.convertToPdf()
+    except subprocess.CalledProcessError as e:
+        print(f"Error converting {item.path.name} \n{e.stderr}")
 
 if __name__ == "__main__":
     main()
