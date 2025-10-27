@@ -22,13 +22,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Cache APT packages
-        uses: actions/cache@v4
-        with:
-          path: /var/cache/apt/archives
-          key: apt-cache-${{ runner.os }}-${{ github.run_id }}
-          restore-keys: apt-cache-${{ runner.os }}-
-
       - name: Set Git Identity
         run: |
           git config --global user.name "XOPP Builder"
@@ -54,8 +47,15 @@ jobs:
       - name: Move output files and prepare branch
         run: |
           # 1. 將 output 資料夾保存到臨時目錄以外的位置
+          
+          echo "The files in original output folder"
+          ls -la ./output
+
           mkdir -p /tmp/output_backup
-          cp -r ./output/* /tmp/output_backup/
+          cp -r ./output/* /tmp/output_backup
+
+          echo "The files in copied output folder"
+          ls -la /tmp/output_backup
           
           # 2. 刪除所有檔案(除了 .git)
           find . -mindepth 1 -not -path "./.git*" -delete
