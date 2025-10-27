@@ -2,14 +2,6 @@ import re
 import gzip
 import subprocess
 from pathlib import Path
-import os
-import sys
-import xml.etree.ElementTree as ET
-import tempfile
-import subprocess
-import shutil
-from pathlib import Path
-import re
 
 OUTPUT_DIR = "./output"
 
