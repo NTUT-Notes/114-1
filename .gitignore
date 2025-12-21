@@ -5,11 +5,14 @@ Computer Organizations/*.pdf
 Computer Organizations/*/*.pdf
 Computer Network/*.pdf
 Computer Network/*/*.pdf
-/Data Structure/*.pdf
-/Data Structure/*/*.pdf
+
+
+Data Structure/*.pdf
+Data Structure/*/*.pdf
 
 # The course that doesn't have note
-/Web Development
+Web Development/
 Object-Oriented Programming/*
 Object-Oriented Programming/!*.xopp
 Android/Prove.txt
+*.mp4
