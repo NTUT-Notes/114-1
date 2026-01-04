@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  Convert Notes:
+  Convert-Notes:
     uses: NTUT-Notes/XOPP-Compiler/.github/workflows/build.yml@main
     with:
       publish_to_branch: true
