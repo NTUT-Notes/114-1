@@ -54,7 +54,10 @@ jobs:
         uses: fontist/setup-fontist@v2
 
       - name: Install font
-        run: fontist install "Fira Code"
+        run: | 
+          fontist install "Fira Code"
+          fontist install "Cascadia Code"
+          fontist install "Cascadia Mono"
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -139,7 +142,10 @@ jobs:
         uses: fontist/setup-fontist@v2
 
       - name: Install font
-        run: fontist install "Fira Code"
+        run: | 
+          fontist install "Fira Code"
+          fontist install "Cascadia Code"
+          fontist install "Cascadia Mono"
 
       - name: Install Dependencies
         run: |
