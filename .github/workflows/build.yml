@@ -1,0 +1,17 @@
+name: Build My Notes
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+  workflow_dispatch:
+
+jobs:
+  call-upstream-build:
+    uses: NTUT-Notes/XOPP-Compiler/.github/workflows/build.yml@main
+    with:
+      publish_to_branch: true
+      publish_branch: "build-output"
+      custom_font_urls: "https://github.com/microsoft/cascadia-code/releases/download/v2407.24/CascadiaCode-2407.24.zip"
