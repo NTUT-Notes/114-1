@@ -9,14 +9,14 @@ on:
 jobs:
   Build:
     runs-on: ubuntu-latest
-    
+
     permissions:
       contents: write
 
     steps:
       - uses: actions/checkout@v4
 
-      - uses: YFHD-osu/XOPP-Compiler
+      - uses: YFHD-osu/XOPP-Compiler@main
         with:
           publish_to_branch: true
           publish_branch: "build-output"
