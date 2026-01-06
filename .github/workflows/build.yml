@@ -19,10 +19,9 @@ jobs:
       - uses: YFHD-osu/XOPP-Compiler@main
         with:
           output_directory: "compiled-pdfs"
-          custom_font_urls: "https://github.com/microsoft/cascadia-code/releases/download/v2407.24/CascadiaCode-2407.24.zip"
+          font_url: "https://github.com/microsoft/cascadia-code/releases/download/v2407.24/CascadiaCode-2407.24.zip"
 
       - name: Deploy to Output Branch
-        if: ${{ inputs.publish_branch != '' }}
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
