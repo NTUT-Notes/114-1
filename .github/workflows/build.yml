@@ -7,9 +7,17 @@ on:
   workflow_dispatch:
 
 jobs:
-  Convert-Notes:
-    uses: NTUT-Notes/XOPP-Compiler/.github/workflows/build.yml@main
-    with:
-      publish_to_branch: true
-      publish_branch: "build-output"
-      custom_font_urls: "https://github.com/microsoft/cascadia-code/releases/download/v2407.24/CascadiaCode-2407.24.zip"
+  Build:
+    runs-on: ubuntu-latest
+    
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: YFHD-osu/XOPP-Compiler
+        with:
+          publish_to_branch: true
+          publish_branch: "build-output"
+          custom_font_urls: "https://github.com/microsoft/cascadia-code/releases/download/v2407.24/CascadiaCode-2407.24.zip"
