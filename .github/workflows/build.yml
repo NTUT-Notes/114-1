@@ -21,3 +21,4 @@ jobs:
           publish_to_branch: true
           publish_branch: "build-output"
           custom_font_urls: "https://github.com/microsoft/cascadia-code/releases/download/v2407.24/CascadiaCode-2407.24.zip"
+          github_token: ${{ secrets.GITHUB_TOKEN }}
